@@ -3,15 +3,33 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1 style="text-align: center;">Register</h1>
+    <section class="container" style="width: 60%;">
+        <div class="row">
+            <div class="col">
+                {{ form_start(registrationForm) }}
+                <fieldset class="mb-5">
+                    <legend>Mon Identité</legend>
+                    {{ form_row(registrationForm.lastname) }}
+                    {{ form_row(registrationForm.firstname) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {label: 'Password'}) }}
+                </fieldset>
+                <fieldset class="mb-5">
+                    <legend>Mes Coordonnées</legend>
+                    {{ form_row(registrationForm.address) }}
+                    {{ form_row(registrationForm.zipcode) }}
+                    {{ form_row(registrationForm.city) }}
+                </fieldset>
+                
+                {{ form_row(registrationForm.RGPDConsent) }}
+                <div style="width:35%; margin:auto">
+                    <button type="submit" class="btn btn-primary btn-lg my-5">Inscription</button>
+                    <a href="{{ path('app_login')}}" class="btn btn-secondary">Déjà Inscrit ?</a>
+                </div>
+            {{ form_end(registrationForm) }}
+            </div>
+        </div>
+    </section>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Inscription</button>
-    {{ form_end(registrationForm) }}
 {% endblock %}
